@@ -1,3 +1,7 @@
+import exceptions.InvalidPasswordLengthException;
+import exceptions.LowercasePasswordException;
+import exceptions.NullPasswordException;
+import exceptions.SpecialCharacterNotFoundInPasswordException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +18,9 @@ public class PasswordCheckerTest {
 
     @Test
     public void validPassword() {
-        assertDoesNotThrow(passwordChecker.validate("Password123!"));
+        assertDoesNotThrow(() -> {
+            passwordChecker.validate("Password123!");
+        });
     }
 
     @Test

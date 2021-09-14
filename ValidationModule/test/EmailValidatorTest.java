@@ -1,7 +1,9 @@
+import exceptions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class EmailValidatorTest {
 
@@ -14,7 +16,9 @@ public class EmailValidatorTest {
 
     @Test
     public void validEmail() {
-        assertDoesNotThrow(emailValidator.validate("mjakaitis18@gmail.com"));
+        assertDoesNotThrow(() -> {
+            emailValidator.validate("mjakaitis18@gmail.com");
+        });
     }
 
     @Test

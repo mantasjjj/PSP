@@ -1,3 +1,4 @@
+import exceptions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,12 +23,16 @@ public class PhoneValidatorTest {
         ValidationInstruction validationInstructionLT = new ValidationInstruction("9", null);
         validationInstructionMap.put("INSTRUCTIONLT", validationInstructionLT);
 
-        assertDoesNotThrow(phoneValidator.validate("864256951", "INSTRUCTIONLT"));
+        assertDoesNotThrow(() -> {
+            phoneValidator.validate("864256951", "INSTRUCTIONLT");
+        });
     }
 
     @Test
     void validPhoneNumberWithoutInstruction() {
-        assertDoesNotThrow(phoneValidator.validate("864256951"));
+        assertDoesNotThrow(() -> {
+            phoneValidator.validate("864256951");
+        });
     }
 
     @Test
@@ -35,7 +40,9 @@ public class PhoneValidatorTest {
         ValidationInstruction validationInstructionLT = new ValidationInstruction("9", "+370");
         validationInstructionMap.put("INSTRUCTIONLT", validationInstructionLT);
 
-        assertDoesNotThrow(phoneValidator.validate("+37065211512", "INSTRUCTIONLT"));
+        assertDoesNotThrow(() -> {
+            phoneValidator.validate("+37065211512", "INSTRUCTIONLT");
+        });
     }
 
     @Test
