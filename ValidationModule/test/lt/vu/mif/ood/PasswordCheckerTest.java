@@ -1,7 +1,5 @@
-import exceptions.InvalidPasswordLengthException;
-import exceptions.LowercasePasswordException;
-import exceptions.NullPasswordException;
-import exceptions.SpecialCharacterNotFoundInPasswordException;
+package lt.vu.mif.ood;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

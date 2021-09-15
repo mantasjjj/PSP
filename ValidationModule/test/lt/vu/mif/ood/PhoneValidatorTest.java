@@ -1,4 +1,5 @@
-import exceptions.*;
+package lt.vu.mif.ood;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
