@@ -17,36 +17,26 @@ public class EmailValidatorTest {
 
     @Test
     public void validEmail() {
-        assertDoesNotThrow(() -> {
-            emailValidator.validate("mjakaitis18@gmail.com");
-        });
+        assertDoesNotThrow(() -> emailValidator.validate("mjakaitis18@gmail.com"));
     }
 
     @Test
     public void emailIsNull() {
-        assertThrows(NullEmailException.class, () -> {
-            emailValidator.validate(null);
-        });
+        assertThrows(NullEmailException.class, () -> emailValidator.validate(null));
     }
 
     @Test
     public void emailDoesNotContainAddressSign() {
-        assertThrows(EmailWithoutAtSymbolException.class, () -> {
-            emailValidator.validate("mjakaitisgmail.com");
-        });
+        assertThrows(EmailWithoutAtSymbolException.class, () -> emailValidator.validate("mjakaitisgmail.com"));
     }
 
     @Test
     public void emailContainsInvalidSymbols() {
-        assertThrows(EmailContainsInvalidSymbolsException.class, () -> {
-            emailValidator.validate("m.jakait$%$/is99@gmail.com");
-        });
+        assertThrows(EmailContainsInvalidSymbolsException.class, () -> emailValidator.validate("m.jakait$%$/is99@gmail.com"));
     }
 
     @Test
     public void emailHasInvalidDomain() {
-        assertThrows(EmailHasInvalidDomainException.class, () -> {
-            emailValidator.validate("mjakaitis18@gmail.co-%kk");
-        });
+        assertThrows(EmailHasInvalidDomainException.class, () -> emailValidator.validate("mjakaitis18@gmail.co-%kk"));
     }
 }

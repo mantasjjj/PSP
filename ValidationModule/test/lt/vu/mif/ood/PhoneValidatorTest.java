@@ -24,16 +24,12 @@ public class PhoneValidatorTest {
         ValidationInstruction validationInstructionLT = new ValidationInstruction("9", null);
         validationInstructionMap.put("INSTRUCTIONLT", validationInstructionLT);
 
-        assertDoesNotThrow(() -> {
-            phoneValidator.validate("864256951", "INSTRUCTIONLT");
-        });
+        assertDoesNotThrow(() -> phoneValidator.validate("864256951", "INSTRUCTIONLT"));
     }
 
     @Test
     void validPhoneNumberWithoutInstruction() {
-        assertDoesNotThrow(() -> {
-            phoneValidator.validate("864256951");
-        });
+        assertDoesNotThrow(() -> phoneValidator.validate("864256951"));
     }
 
     @Test
@@ -41,16 +37,12 @@ public class PhoneValidatorTest {
         ValidationInstruction validationInstructionLT = new ValidationInstruction("9", "+370");
         validationInstructionMap.put("INSTRUCTIONLT", validationInstructionLT);
 
-        assertDoesNotThrow(() -> {
-            phoneValidator.validate("+37065211512", "INSTRUCTIONLT");
-        });
+        assertDoesNotThrow(() -> phoneValidator.validate("+37065211512", "INSTRUCTIONLT"));
     }
 
     @Test
     public void phoneIsNull() {
-        assertThrows(NullPhoneException.class, () -> {
-            phoneValidator.validate(null);
-        });
+        assertThrows(NullPhoneException.class, () -> phoneValidator.validate(null));
     }
 
     @Test
@@ -58,9 +50,7 @@ public class PhoneValidatorTest {
         ValidationInstruction validationInstructionNo2 = new ValidationInstruction("12", "+320");
         validationInstructionMap.put("INSTRUCTION2", validationInstructionNo2);
 
-        assertThrows(InvalidEmailSymbolException.class, () -> {
-            phoneValidator.validate("+320211AAB154", "INSTRUCTION2");
-        });
+        assertThrows(InvalidPhoneSymbolException.class, () -> phoneValidator.validate("+320211AAB154", "INSTRUCTION2"));
     }
 
     @Test
@@ -68,8 +58,6 @@ public class PhoneValidatorTest {
         ValidationInstruction validationInstructionNo2 = new ValidationInstruction("12", "+320");
         validationInstructionMap.put("INSTRUCTION2", validationInstructionNo2);
 
-        assertThrows(InvalidEmailLengthException.class, () -> {
-            phoneValidator.validate("8621118A", "INSTRUCTION2");
-        });
+        assertThrows(InvalidPhoneLengthException.class, () -> phoneValidator.validate("8621118A", "INSTRUCTION2"));
     }
 }
