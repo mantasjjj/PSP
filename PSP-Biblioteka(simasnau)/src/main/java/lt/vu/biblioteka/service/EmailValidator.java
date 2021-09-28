@@ -5,9 +5,13 @@ import java.util.List;
 
 public class EmailValidator {
 
-    private final List<Character> ILLEGAL_CHARACTERS_LIST = Collections.singletonList('#');
+    private List<Character> illegalCharactersList = Collections.singletonList('#');
 
     public EmailValidator() {
+    }
+
+    public EmailValidator(List<Character> illegalChars) {
+        this.illegalCharactersList = illegalChars;
     }
 
     public boolean isEmailValid(String email) {
@@ -34,7 +38,7 @@ public class EmailValidator {
 
         for (int i = 0; i < email.length(); i++) {
             ch = email.charAt(i);
-            if (ILLEGAL_CHARACTERS_LIST.contains(ch)) {
+            if (illegalCharactersList.contains(ch)) {
                 return true;
             }
         }

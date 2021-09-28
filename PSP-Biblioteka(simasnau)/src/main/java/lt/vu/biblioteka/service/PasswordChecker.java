@@ -6,9 +6,13 @@ import java.util.List;
 
 public class PasswordChecker {
     private static final int MINIMUM_PASSWORD_LENGTH = 6;
-    private final List<Character> SPECIAL_CHARACTERS_LIST = new ArrayList<>(Arrays.asList('#', '$'));
+    private List<Character> specialCharactersList = new ArrayList<>(Arrays.asList('#', '$'));
 
     public PasswordChecker() {
+    }
+
+    public PasswordChecker(List<Character> specialChars) {
+        this.specialCharactersList = specialChars;
     }
 
     public boolean isPasswordValid(String password) {
@@ -40,7 +44,7 @@ public class PasswordChecker {
 
         for (int i = 0; i < password.length(); i++) {
             ch = password.charAt(i);
-            if (SPECIAL_CHARACTERS_LIST.contains(ch)) {
+            if (specialCharactersList.contains(ch)) {
                 hasSpecialChar = true;
                 break;
             }
