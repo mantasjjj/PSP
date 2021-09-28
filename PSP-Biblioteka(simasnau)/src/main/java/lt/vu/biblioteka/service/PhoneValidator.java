@@ -12,7 +12,7 @@ public class PhoneValidator {
     public boolean isPhoneValid(String phoneNumber, List<Country> countryList) {
         String normalizedPhoneNumber = normalizePhoneNumber(phoneNumber);
         if (normalizedPhoneNumber != null) {
-            return onlyNumbersInPhoneNumber(phoneNumber) && isPhoneNumberValidByCountry(normalizedPhoneNumber, countryList);
+            return onlyNumbersInPhoneNumber(normalizedPhoneNumber) && isPhoneNumberValidByCountry(normalizedPhoneNumber, countryList);
         } else {
             return phoneNumber != null && onlyNumbersInPhoneNumber(phoneNumber) && isPhoneNumberValidByCountry(phoneNumber, countryList);
         }
