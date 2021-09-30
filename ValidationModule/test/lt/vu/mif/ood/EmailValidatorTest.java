@@ -1,5 +1,7 @@
 package lt.vu.mif.ood;
 
+import lt.vu.mif.ood.exceptions;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +34,7 @@ public class EmailValidatorTest {
 
     @Test
     public void emailContainsInvalidSymbols() {
-        assertThrows(EmailContainsInvalidSymbolsException.class, () -> emailValidator.validate("m.jakait$%$/is99@gmail.com"));
+        assertThrows(EmailContainsInvalidSymbolsException.class, () -> emailValidator.validate("m.jakait (,"is99@gmail.com"));
     }
 
     @Test

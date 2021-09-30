@@ -1,5 +1,7 @@
 package lt.vu.mif.ood;
 
+import lt.vu.mif.ood.exceptions;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,9 +23,9 @@ public class PhoneValidatorTest {
 
     @Test
     void validPhoneNumber() {
-        ValidationInstruction validationInstructionLT = new ValidationInstruction("9", null);
+        ValidationInstruction validationInstructionLT = new ValidationInstruction(9, null, 8);
         validationInstructionMap.put("INSTRUCTIONLT", validationInstructionLT);
-
+        phoneValidator.setValidationInstructions(validationInstructionMap);
         assertDoesNotThrow(() -> phoneValidator.validate("864256951", "INSTRUCTIONLT"));
     }
 
@@ -34,9 +36,9 @@ public class PhoneValidatorTest {
 
     @Test
     void validPhoneNumberWithPrefix() {
-        ValidationInstruction validationInstructionLT = new ValidationInstruction("9", "+370");
+        ValidationInstruction validationInstructionLT = new ValidationInstruction(9, "+370", 8);
         validationInstructionMap.put("INSTRUCTIONLT", validationInstructionLT);
-
+        phoneValidator.setValidationInstructions(validationInstructionMap);
         assertDoesNotThrow(() -> phoneValidator.validate("+37065211512", "INSTRUCTIONLT"));
     }
 
@@ -47,17 +49,17 @@ public class PhoneValidatorTest {
 
     @Test
     public void phoneContainsInvalidSymbols() {
-        ValidationInstruction validationInstructionNo2 = new ValidationInstruction("12", "+320");
+        ValidationInstruction validationInstructionNo2 = new ValidationInstruction(12, "+320", 2);
         validationInstructionMap.put("INSTRUCTION2", validationInstructionNo2);
-
+        phoneValidator.addValidationInstruction("INSTRUCTION2", validationInstructionNo2);
         assertThrows(InvalidPhoneSymbolException.class, () -> phoneValidator.validate("+320211AAB154", "INSTRUCTION2"));
     }
 
     @Test
     public void phoneIsOfInvalidLength() {
-        ValidationInstruction validationInstructionNo2 = new ValidationInstruction("12", "+320");
+        ValidationInstruction validationInstructionNo2 = new ValidationInstruction(12, "+320", 0);
         validationInstructionMap.put("INSTRUCTION2", validationInstructionNo2);
-
+        phoneValidation.setValidationInstructions(validationInstructionMap);
         assertThrows(InvalidPhoneLengthException.class, () -> phoneValidator.validate("8621118A", "INSTRUCTION2"));
     }
 }
