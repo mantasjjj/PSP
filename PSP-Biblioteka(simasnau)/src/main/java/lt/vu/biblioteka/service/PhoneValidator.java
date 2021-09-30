@@ -26,15 +26,13 @@ public class PhoneValidator {
     }
 
     private boolean onlyNumbersInPhoneNumber(String phoneNumber) {
-        char ch;
+        String numberToValidate = phoneNumber;
 
-        for (int i = 0; i < phoneNumber.length(); i++) {
-            ch = phoneNumber.charAt(i);
-            if (!Character.isDigit(ch) && !(i == 0 && ch == '+')) {
-                return false;
-            }
+        if (numberToValidate.startsWith("+")) {
+            numberToValidate = numberToValidate.substring(1);
         }
-        return true;
+
+        return numberToValidate.chars().allMatch(Character::isDigit);
     }
 
     private boolean isPhoneNumberValidByCountry(String phoneNumber, List<Country> countryList) {

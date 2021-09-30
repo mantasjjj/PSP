@@ -1,11 +1,12 @@
 package main.java.lt.vu.biblioteka.service;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class EmailValidator {
 
-    private List<Character> illegalCharactersList = Collections.singletonList('#');
+    private List<Character> illegalCharactersList = new ArrayList<>(Arrays.asList('#', '$'));
 
     public EmailValidator() {
     }
@@ -19,18 +20,7 @@ public class EmailValidator {
     }
 
     private boolean atSignExists(String email) {
-        char ch;
-        boolean hasAtSign = false;
-
-        for (int i = 0; i < email.length(); i++) {
-            ch = email.charAt(i);
-            if (ch == '@') {
-                hasAtSign = true;
-                break;
-            }
-        }
-
-        return hasAtSign;
+        return email.chars().anyMatch(c -> c == '@');
     }
 
     private boolean emailContainsIllegalCharactersSpecialCharacters(String email) {
@@ -63,7 +53,6 @@ public class EmailValidator {
                 }
             }
         }
-
         return true;
     }
 }

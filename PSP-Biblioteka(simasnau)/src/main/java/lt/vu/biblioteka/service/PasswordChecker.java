@@ -24,32 +24,19 @@ public class PasswordChecker {
     }
 
     private boolean doesPasswordHaveUppercase(String password) {
-        char ch;
-        boolean hasUpper = false;
-
-        for (int i = 0; i < password.length(); i++) {
-            ch = password.charAt(i);
-            if (Character.isUpperCase(ch)) {
-                hasUpper = true;
-                break;
-            }
-        }
-
-        return hasUpper;
+        return password.chars().anyMatch(Character::isUpperCase);
     }
 
     private boolean doesPasswordContainSpecialCharacters(String password) {
         char ch;
-        boolean hasSpecialChar = false;
 
         for (int i = 0; i < password.length(); i++) {
             ch = password.charAt(i);
             if (specialCharactersList.contains(ch)) {
-                hasSpecialChar = true;
-                break;
+                return true;
             }
         }
 
-        return hasSpecialChar;
+        return false;
     }
 }
