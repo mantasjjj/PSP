@@ -34,7 +34,7 @@ public class EmailValidatorTest {
 
     @Test
     public void emailContainsInvalidSymbols() {
-        assertThrows(EmailContainsInvalidSymbolsException.class, () -> emailValidator.validate("m.jakait (,"is99@gmail.com"));
+        assertThrows(EmailContainsInvalidSymbolsException.class, () -> emailValidator.validate("m.jakait (,\"is99@gmail.com"));
     }
 
     @Test

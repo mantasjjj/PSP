@@ -59,7 +59,7 @@ public class PhoneValidatorTest {
     public void phoneIsOfInvalidLength() {
         ValidationInstruction validationInstructionNo2 = new ValidationInstruction(12, "+320", 0);
         validationInstructionMap.put("INSTRUCTION2", validationInstructionNo2);
-        phoneValidation.setValidationInstructions(validationInstructionMap);
+        phoneValidator.setValidationInstructions(validationInstructionMap);
         assertThrows(InvalidPhoneLengthException.class, () -> phoneValidator.validate("8621118A", "INSTRUCTION2"));
     }
 }
