@@ -1,5 +1,7 @@
 package lt.vu.mif.ood;
 
+import lt.vu.mif.ood.exceptions.*;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
