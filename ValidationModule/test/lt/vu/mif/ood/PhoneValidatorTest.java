@@ -52,7 +52,7 @@ public class PhoneValidatorTest {
         ValidationInstruction validationInstructionNo2 = new ValidationInstruction(12, "+320", "2");
         validationInstructionMap.put("INSTRUCTION2", validationInstructionNo2);
         phoneValidator.addValidationInstruction("INSTRUCTION2", validationInstructionNo2);
-        assertThrows(InvalidPhoneSymbolException.class, () -> phoneValidator.validate("+320211AAB154", "INSTRUCTION2"));
+        assertThrows(InvalidPhoneSymbolException.class, () -> phoneValidator.validate("+320211AAB154469", "INSTRUCTION2"));
     }
 
     @Test
@@ -60,6 +60,6 @@ public class PhoneValidatorTest {
         ValidationInstruction validationInstructionNo2 = new ValidationInstruction(12, "+320", "0");
         validationInstructionMap.put("INSTRUCTION2", validationInstructionNo2);
         phoneValidator.setValidationInstructions(validationInstructionMap);
-        assertThrows(InvalidPhoneLengthException.class, () -> phoneValidator.validate("86211182", "INSTRUCTION2"));
+        assertThrows(InvalidPhoneLengthException.class, () -> phoneValidator.validate("8621118A", "INSTRUCTION2"));
     }
 }
