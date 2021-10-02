@@ -36,23 +36,11 @@ public class EmailValidator {
     }
 
     private boolean emailHasValidDomain(String email) {
-        char ch;
-        String domain;
-        String domainName;
-
-        for (int i = 0; i < email.length(); i++) {
-            ch = email.charAt(i);
-            if (ch == '@') {
-                domain = email.substring(i + 1);
-                domainName = email.substring(0, domain.indexOf('.'));
-                if (domainName.length() < 2 || domainName.length() > 63) {
-                    return false;
-                }
-                if (!domain.contains(".")) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        String domain = email.substring(email.indexOf('@'));
+        String domainName = email.substring(0, domain.indexOf('.'));
+        String tld = domain.substring(domain.lastIndexOf("."));
+        return domainName.length() >= 2 && domainName.length() <= 63 &&
+                domain.contains(".") && !domain.startsWith("-") && !domain.endsWith("-")
+                && tld.length() >= 2 && tld.length() <= 6;
     }
 }
